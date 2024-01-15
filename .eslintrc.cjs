@@ -4,7 +4,6 @@ module.exports = {
   extends: [
     'airbnb-base',
     'airbnb-typescript/base',
-    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
   ],
@@ -19,5 +18,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    "import/extensions": ["off", "never"],
   },
 }
