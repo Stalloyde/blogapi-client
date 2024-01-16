@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Layout from './layout';
-import './home.css';
+// import './home.css';
 
 function Signup() {
   const [data, setData] = useState();
