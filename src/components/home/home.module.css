@@ -6,8 +6,12 @@
 }
 
 h2 {
-    padding: 1em;
-    text-align: center;
+    margin: 1em auto;
+    padding: 0.5em;
+    width: max-content;
+    border: 1px solid gray;
+    background-color: white;
+    box-shadow: 3px 3px black;
 }
 
 .card {
@@ -18,7 +22,7 @@ h2 {
     height: 300px;
     width: 420px;
     border-radius: 10px;
-    box-shadow: 3px 3px 5px black;
+    box-shadow: 3px 3px black;
 }
 
 .content {

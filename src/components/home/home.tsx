@@ -34,9 +34,7 @@ function Home({ targetPost, setTargetPost }) {
   <Layout>
     <main>
       <>
-        <h2>
-          All Posts
-        </h2>
+        <h2>All Posts</h2>
 
         <div className={styles.cardContainer}>
           {posts.map((post, index) => (
