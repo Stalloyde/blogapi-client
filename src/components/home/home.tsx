@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../layout/layout';
 import styles from './home.module.css';
 
-function App() {
+function Home({ targetPost, setTargetPost }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -40,20 +40,19 @@ function App() {
 
         <div className={styles.cardContainer}>
           {posts.map((post, index) => (
-            <div className={styles.card} key={index}>
-              <Link to={`/${post._id}`}>
+            <div className={styles.card} key={index} onClick={() => { setTargetPost(post._id); }}>
+              <Link to={`./${post._id}`}>
+                <div>
+                  <h3>{post.title}</h3>
+                  <em>{formatDate(post.date)}</em>
+                </div>
 
-              <div>
-                <h3>{post.title}</h3>
-                <em>{formatDate(post.date)}</em>
-              </div>
+                <LinesEllipsis text={post.content} maxLine='5' ellipsis='..' trimRight basedOn='letters' className={styles.content}/>
 
-              <LinesEllipsis text={post.content} maxLine='5' ellipsis='..' trimRight basedOn='letters' className={styles.content}/>
-
-              <div className={styles.comments}>
-                <em>{post.comments.length} Comments </em>
-              </div>
-            </Link>
+                <div className={styles.comments}>
+                  <em>{post.comments.length} Comments </em>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -63,4 +62,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
