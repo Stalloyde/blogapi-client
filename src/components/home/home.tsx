@@ -35,40 +35,38 @@ function Home({ targetPost, setTargetPost }) {
 
   return (
     <Layout>
-      <main>
-        <>
-          <h2>All Posts</h2>
+      <>
+        <h2>All Posts</h2>
 
-          <div className={styles.cardContainer}>
-            {posts.map((post, index) => (
-              <div
-                className={styles.card}
-                key={index}
-              >
-                <Link to={`./${post._id}`}>
-                  <div>
-                    <h3>{post.title}</h3>
-                    <em>{formatDate(post.date)}</em>
-                  </div>
+        <div className={styles.cardContainer}>
+          {posts.map((post, index) => (
+            <div
+              className={styles.card}
+              key={index}
+            >
+              <Link to={`./${post._id}`}>
+                <div>
+                  <h3>{post.title}</h3>
+                  <em>{formatDate(post.date)}</em>
+                </div>
 
-                  <LinesEllipsis
-                    text={post.content}
-                    maxLine='5'
-                    ellipsis='..'
-                    trimRight
-                    basedOn='letters'
-                    className={styles.content}
-                  />
+                <LinesEllipsis
+                  text={post.content}
+                  maxLine='5'
+                  ellipsis='..'
+                  trimRight
+                  basedOn='letters'
+                  className={styles.content}
+                />
 
-                  <div className={styles.comments}>
-                    <em>{post.comments.length} Comments </em>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </>
-      </main>
+                <div className={styles.comments}>
+                  <em>{post.comments.length} Comments </em>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </>
     </Layout>
   );
 }

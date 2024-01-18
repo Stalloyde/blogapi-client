@@ -5,9 +5,9 @@ import Footer from '../footer/footer';
 function layout(props) {
   return (
     <>
-        <Header />
-        {props.children }
-        <Footer />
+      <Header />
+      <main>{props.children}</main>
+      <Footer />
     </>
   );
 }
