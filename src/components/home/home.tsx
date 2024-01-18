@@ -11,7 +11,9 @@ function Home({ targetPost, setTargetPost }) {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/posts', { mode: 'cors' });
+        const response = await fetch('http://localhost:3000/posts', {
+          mode: 'cors',
+        });
 
         if (!response.ok) {
           throw new Error(
@@ -28,35 +30,46 @@ function Home({ targetPost, setTargetPost }) {
     getPosts();
   }, []);
 
-  const formatDate = (date) => DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
+  const formatDate = (date) =>
+    DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
 
   return (
-  <Layout>
-    <main>
-      <>
-        <h2>All Posts</h2>
+    <Layout>
+      <main>
+        <>
+          <h2>All Posts</h2>
 
-        <div className={styles.cardContainer}>
-          {posts.map((post, index) => (
-            <div className={styles.card} key={index} onClick={() => { setTargetPost(post._id); }}>
-              <Link to={`./${post._id}`}>
-                <div>
-                  <h3>{post.title}</h3>
-                  <em>{formatDate(post.date)}</em>
-                </div>
+          <div className={styles.cardContainer}>
+            {posts.map((post, index) => (
+              <div
+                className={styles.card}
+                key={index}
+              >
+                <Link to={`./${post._id}`}>
+                  <div>
+                    <h3>{post.title}</h3>
+                    <em>{formatDate(post.date)}</em>
+                  </div>
 
-                <LinesEllipsis text={post.content} maxLine='5' ellipsis='..' trimRight basedOn='letters' className={styles.content}/>
+                  <LinesEllipsis
+                    text={post.content}
+                    maxLine='5'
+                    ellipsis='..'
+                    trimRight
+                    basedOn='letters'
+                    className={styles.content}
+                  />
 
-                <div className={styles.comments}>
-                  <em>{post.comments.length} Comments </em>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </>
-    </main>
-  </Layout>
+                  <div className={styles.comments}>
+                    <em>{post.comments.length} Comments </em>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </>
+      </main>
+    </Layout>
   );
 }
 

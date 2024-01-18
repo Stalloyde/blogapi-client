@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from 'react-router-dom';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Home from './components/home/home';
@@ -15,15 +19,15 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Navigate to='/posts'/>,
+      element: <Navigate to='/posts' />,
     },
     {
       path: '/posts',
-      element: <Home targetPost={targetPost} setTargetPost={setTargetPost}/>,
+      element: <Home />,
     },
     {
       path: '/posts/:id',
-      element: <TargetPost targetPost={targetPost} setTargetPost={setTargetPost}/>,
+      element: <TargetPost />,
     },
     {
       path: '/login',
@@ -33,13 +37,12 @@ const App = () => {
       path: '/signup',
       element: <Signup />,
     },
-
   ]);
 
   return (
-  <React.StrictMode>
+    <React.StrictMode>
       <RouterProvider router={router} />
-  </React.StrictMode>
+    </React.StrictMode>
   );
 };
 

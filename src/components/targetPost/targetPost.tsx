@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
-import { createBrowserRouter, RouterProvide } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Layout from '../layout/layout';
 import './targetPost.module.css';
 
-function TargetPost({ targetPost, setTargetPost }) {
+function TargetPost() {
   const [targetPostData, setTargetPostData] = useState([]);
+  const targetPostId = useParams();
 
   useEffect(() => {
     const fetchTargetPost = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/posts/${targetPost}`);
+        const response = await fetch(
+          `http://localhost:3000/posts/${targetPostId.id}`,
+        );
 
         if (!response.ok) {
           throw new Error(
@@ -27,11 +30,12 @@ function TargetPost({ targetPost, setTargetPost }) {
   }, []);
 
   return (
-  <Layout>
-    <>
-    {targetPostData.content}
-    </>
-  </Layout>
+    <Layout>
+      <>
+        <h2>{targetPostData.title}</h2>
+        {targetPostData.content}
+      </>
+    </Layout>
   );
 }
 
