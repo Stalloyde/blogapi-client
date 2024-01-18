@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "luxon": "^3.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lines-ellipsis": "^0.15.4",
     "react-router-dom": "^6.21.2",
     "typescript-plugin-css-modules": "^5.0.2"
   },

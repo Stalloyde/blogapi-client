@@ -9,7 +9,7 @@ import signupLogo from '../assets/icons8-sign-up-50.png';
 function Header() {
   return (
     <header className={styles.header}>
-      <Link to='/' className={styles.navbtn}>
+      <Link to='/' className={styles.navbtn} >
         <img src={homeLogo} alt='home-logo'></img>
         Home
       </Link>

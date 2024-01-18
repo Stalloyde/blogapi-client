@@ -7,6 +7,12 @@ header {
   box-shadow: 1px 0px 5px gray;
 }
 
+h1 {
+  flex-grow: 1;
+  text-align: center;
+  padding-left: 4em;
+}
+
 .nav {
   display: flex;
 }
