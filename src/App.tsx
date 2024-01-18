@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Home from './components/home/home';
@@ -10,10 +10,20 @@ import TargetPost from './components/targetPost/targetPost';
 import './index.css';
 
 const App = () => {
+  const [targetPost, setTargetPost] = useState([]);
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />,
+      element: <Navigate to='/posts'/>,
+    },
+    {
+      path: '/posts',
+      element: <Home targetPost={targetPost} setTargetPost={setTargetPost}/>,
+    },
+    {
+      path: '/posts/:id',
+      element: <TargetPost targetPost={targetPost} setTargetPost={setTargetPost}/>,
     },
     {
       path: '/login',
@@ -23,15 +33,12 @@ const App = () => {
       path: '/signup',
       element: <Signup />,
     },
-    {
-      path: '/:id',
-      element: <TargetPost/>,
-    },
+
   ]);
 
   return (
   <React.StrictMode>
-      <RouterProvider router={router } />
+      <RouterProvider router={router} />
   </React.StrictMode>
   );
 };
