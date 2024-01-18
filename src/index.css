@@ -19,3 +19,12 @@ a {
 a:visited {
   color: black;
 }
+
+h2 {
+  margin: 1em auto;
+  padding: 0.5em;
+  width: max-content;
+  border: 1px solid gray;
+  background-color: white;
+  box-shadow: 3px 3px black;
+}
