@@ -31,7 +31,6 @@ h2 {
 }
 
 .comments {
-    margin: 1em 0.5em;
-    padding: 1em 0.5em;
+    padding: 1em 1em;
     text-align: end;
 }
