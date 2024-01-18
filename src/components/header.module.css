@@ -23,12 +23,7 @@ h1 {
   margin: 0 10px;
   width: 80px;
   flex-direction: column;
-  text-decoration: none;
   align-items: center;
-}
-
-.navbtn:visited {
-  color: black;
 }
 
 img {

@@ -11,3 +11,11 @@
   grid-template-rows: 80px 1fr 70px;
   background-color: aliceblue;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
