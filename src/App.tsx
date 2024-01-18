@@ -25,14 +25,8 @@ const App = () => {
       element: <Signup />,
     },
     {
-      path: '/posts',
-      element: <Posts />,
-      children: [
-        {
-          path: ':id',
-          element: <TargetPost/>,
-        },
-      ],
+      path: '/:id',
+      element: <TargetPost/>,
     },
   ]);
 

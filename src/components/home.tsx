@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import LinesEllipsis from 'react-lines-ellipsis';
+import { Link } from 'react-router-dom';
 import Layout from './layout';
 import styles from './home.module.css';
 
@@ -38,18 +39,21 @@ function App() {
         </h2>
 
         <div className={styles.cardContainer}>
-          {posts.map((post) => (
-            <div className={styles.card}>
+          {posts.map((post, index) => (
+            <div className={styles.card} key={index}>
+              <Link to={`/${post._id}`}>
+
               <div>
                 <h3>{post.title}</h3>
                 <em>{formatDate(post.date)}</em>
               </div>
 
-              <LinesEllipsis text={post.content} maxLine='4' ellipsis='...' trimRight basedOn='letters' className={styles.content}/>
+              <LinesEllipsis text={post.content} maxLine='5' ellipsis='..' trimRight basedOn='letters' className={styles.content}/>
 
               <div className={styles.comments}>
-              <em>{post.comments.length} Comments</em>
+                <em>{post.comments.length} Comments </em>
               </div>
+            </Link>
             </div>
           ))}
         </div>
