@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Layout from './layout';
+import Layout from '../layout/layout';
 
 function Login() {
   const [data, setData] = useState();

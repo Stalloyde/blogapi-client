@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Header from './components/header';
-import Footer from './components/footer';
-import Home from './components/home';
-import Login from './components/login';
-import Signup from './components/signup';
-import Posts from './components/posts';
-import TargetPost from './components/targetPost';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import Home from './components/home/home';
+import Login from './components/login/login';
+import Signup from './components/signup/signup';
+import TargetPost from './components/targetPost/targetPost';
 import './index.css';
 
 const App = () => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import LinesEllipsis from 'react-lines-ellipsis';
 import { Link } from 'react-router-dom';
-import Layout from './layout';
+import Layout from '../layout/layout';
 import styles from './home.module.css';
 
 function App() {
