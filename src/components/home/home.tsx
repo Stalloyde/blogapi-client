@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { DateTime } from 'luxon';
 import LinesEllipsis from 'react-lines-ellipsis';
 import { Link } from 'react-router-dom';
 import Layout from '../layout/layout';
 import styles from './home.module.css';
+import formatDate from '../../formatDate';
 
 function Home({ targetPost, setTargetPost }) {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -23,15 +25,18 @@ function Home({ targetPost, setTargetPost }) {
 
         const responseData = await response.json();
         setPosts(responseData);
+        setError(null);
       } catch (err) {
-        throw new Error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
     getPosts();
   }, []);
 
-  const formatDate = (date) =>
-    DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <Layout>
