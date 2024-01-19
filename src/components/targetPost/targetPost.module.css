@@ -8,7 +8,7 @@
     background-color: white;
     text-align: justify;   
     padding: 1em;
-    box-shadow: 3px 3px black;
+    box-shadow: -3px 3px black;
     margin: 1em;
     line-height: 1.5;
 }
@@ -19,16 +19,22 @@
     padding: 20px;
 }
 
-h3 {
+.commentsContainer > h3 {
     text-align: center;
 }
 
+.commentsContainer > div {
+    padding: 1em;
+}
+
 .comment {
+    display: flex;
+    background-color: white;
+    box-shadow: -3px 3px black;
     border-radius: 10px;
     border:1px solid gray;
     padding: 1em;   
     margin: 1em;
-    display: flex;
 }
 
 .comment > div {

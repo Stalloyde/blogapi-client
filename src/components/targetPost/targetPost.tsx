@@ -59,13 +59,11 @@ function TargetPost() {
 
           <div className={styles.commentsContainer}>
             <h3>Comments</h3>
+            <div>Please sign up or login to add a comment</div>
             {targetPostData.comments.length > 0 ? (
               <>
                 {targetPostData.comments.map((comment) => (
-                  <div
-                    key={comment._id}
-                    className={styles.comment}
-                  >
+                  <div key={comment._id} className={styles.comment}>
                     <div>{comment.content}</div>
                     <em>
                       {comment.author.username} | {formatDate(comment.date)}
