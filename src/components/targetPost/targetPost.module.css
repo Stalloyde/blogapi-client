@@ -1,0 +1,40 @@
+.contentContainer {
+    margin: 0em 30em;
+    padding: 1em;
+    text-align: center;
+}
+
+.postContainer { 
+    background-color: white;
+    text-align: justify;   
+    padding: 1em;
+    box-shadow: 3px 3px black;
+    margin: 1em;
+    line-height: 1.5;
+}
+
+.commentsContainer {
+    margin: 0 30em;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h3 {
+    text-align: center;
+}
+
+.comment {
+    border-radius: 10px;
+    border:1px solid gray;
+    padding: 1em;   
+    margin: 1em;
+    display: flex;
+}
+
+.comment > div {
+    flex-grow: 1;
+}
+
+hr {
+    margin: 0em 30em;
+}

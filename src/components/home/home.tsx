@@ -35,43 +35,45 @@ function Home({ targetPost, setTargetPost }) {
     getPosts();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
     <Layout>
-      <>
-        <h2>All Posts</h2>
+      {loading && <div className='loading'>Loading...</div>}
+      {error && !loading && <div className='error'>{error}</div>}
 
-        <div className={styles.cardContainer}>
-          {posts.map((post, index) => (
-            <div
-              className={styles.card}
-              key={index}
-            >
-              <Link to={`./${post._id}`}>
-                <div>
-                  <h3>{post.title}</h3>
-                  <em>{formatDate(post.date)}</em>
-                </div>
+      {!error && !loading && (
+        <>
+          <h2>All Posts</h2>
 
-                <LinesEllipsis
-                  text={post.content}
-                  maxLine='5'
-                  ellipsis='..'
-                  trimRight
-                  basedOn='letters'
-                  className={styles.content}
-                />
+          <div className={styles.cardContainer}>
+            {posts.map((post, index) => (
+              <div
+                className={styles.card}
+                key={index}
+              >
+                <Link to={`./${post._id}`}>
+                  <div>
+                    <h3>{post.title}</h3>
+                    <em>{formatDate(post.date)}</em>
+                  </div>
 
-                <div className={styles.comments}>
-                  <em>{post.comments.length} Comments </em>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </>
+                  <LinesEllipsis
+                    text={post.content}
+                    maxLine='5'
+                    ellipsis='..'
+                    trimRight
+                    basedOn='letters'
+                    className={styles.content}
+                  />
+
+                  <div className={styles.comments}>
+                    <em>{post.comments.length} Comments </em>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </Layout>
   );
 }
