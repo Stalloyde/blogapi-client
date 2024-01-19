@@ -10,7 +10,7 @@ header {
 h1 {
   flex-grow: 1;
   text-align: center;
-  padding-left: 4em;
+  padding-left: 3em;
 }
 
 .nav {
