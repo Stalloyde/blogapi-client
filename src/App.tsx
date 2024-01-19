@@ -5,8 +5,6 @@ import {
   RouterProvider,
   Navigate,
 } from 'react-router-dom';
-import Header from './components/header/header';
-import Footer from './components/footer/footer';
 import Home from './components/home/home';
 import Login from './components/login/login';
 import Signup from './components/signup/signup';
