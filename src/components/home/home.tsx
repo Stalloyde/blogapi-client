@@ -5,7 +5,7 @@ import Layout from '../layout/layout';
 import styles from './home.module.css';
 import formatDate from '../../formatDate';
 
-function Home({ targetPost, setTargetPost }) {
+function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,10 +46,7 @@ function Home({ targetPost, setTargetPost }) {
 
           <div className={styles.cardContainer}>
             {posts.map((post, index) => (
-              <div
-                className={styles.card}
-                key={index}
-              >
+              <div className={styles.card} key={index}>
                 <Link to={`./${post._id}`}>
                   <div>
                     <h3>{post.title}</h3>
