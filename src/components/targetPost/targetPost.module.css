@@ -1,7 +1,12 @@
 .contentContainer {
-    margin: 0em 30em;
+    margin: 1em 30em;
     padding: 1em;
     text-align: center;
+}
+
+.contentContainer > h2 {
+    padding: 0.5em;
+    text-decoration: underline;
 }
 
 .postContainer { 
@@ -9,7 +14,8 @@
     text-align: justify;   
     padding: 1em;
     box-shadow: -3px 3px black;
-    margin: 1em;
+    margin: 1em auto;
+    width: 80%;
     line-height: 1.5;
 }
 

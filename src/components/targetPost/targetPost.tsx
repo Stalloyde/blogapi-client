@@ -43,9 +43,8 @@ function TargetPost() {
 
       {!error && !loading && (
         <>
-          <h2>{targetPostData.title}</h2>
-
           <div className={styles.contentContainer}>
+            <h2>{targetPostData.title}</h2>
             <em>
               Written by: {targetPostData.author.username} | Date:{' '}
               {formatDate(targetPostData.date)}

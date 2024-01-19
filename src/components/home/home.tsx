@@ -42,7 +42,9 @@ function Home() {
 
       {!error && !loading && (
         <>
-          <h2>All Posts</h2>
+          <div className={styles.mainHeader}>
+            <h2>All Posts</h2>
+          </div>
 
           <div className={styles.cardContainer}>
             {posts.map((post, index) => (
