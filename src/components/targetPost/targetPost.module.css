@@ -50,3 +50,7 @@
 hr {
     margin: 0em 30em;
 }
+
+.commentLink {
+    text-decoration: underline;
+}

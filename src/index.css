@@ -27,3 +27,7 @@ a:visited {
 .error {
   margin: 10em 10em;
 }
+
+button:hover {
+  cursor: pointer;
+}
