@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Layout from '../layout/layout';
 import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
@@ -58,7 +58,17 @@ function TargetPost() {
 
           <div className={styles.commentsContainer}>
             <h3>Comments</h3>
-            <div>Please sign up or login to add a comment</div>
+            <div>
+              Please{' '}
+              <Link to='/signup'>
+                <em className={styles.commentLink}>sign up</em>
+              </Link>{' '}
+              or
+              <Link to='/login'>
+                <em className={styles.commentLink}>login</em>
+              </Link>{' '}
+              to add a comment
+            </div>
             {targetPostData.comments.length > 0 ? (
               <>
                 {targetPostData.comments.map((comment) => (
