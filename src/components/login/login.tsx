@@ -24,15 +24,28 @@ function Login() {
         </div>
 
         <div className={styles.content}>
-          <form method='post' className={styles.form}>
+          <form
+            method='post'
+            action='http://localhost:5173/posts'
+            className={styles.form}>
             <div>
               <img src={usernameIcon} alt='username' />
-              <input type='text' id='username' placeholder='Username' />
+              <input
+                type='text'
+                id='username'
+                name='username'
+                placeholder='Username'
+              />
             </div>
 
             <div>
               <img src={passwordIcon} alt='password' />
-              <input type='password' id='password' placeholder='Password' />
+              <input
+                type='password'
+                id='password'
+                name='password'
+                placeholder='Password'
+              />
             </div>
 
             <div>
