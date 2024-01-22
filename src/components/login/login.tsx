@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { json } from 'react-router-dom/dist/index';
 import Layout from '../layout/layout';
 import styles from './login.module.css';
 import usernameIcon from '../../assets/icons8-username-64.png';
@@ -34,6 +33,9 @@ function Login() {
       if (!responseData.user && !responseData.Bearer) {
         setErrorMessage(responseData);
       } else {
+        console.log(responseData);
+        setUsername('');
+        setPassword('');
         setErrorMessage('');
       }
     } catch (err) {
@@ -66,6 +68,7 @@ function Login() {
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
+                value={username}
                 onKeyDown={handleKeyDown}
               />
             </div>
@@ -86,6 +89,7 @@ function Login() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
+                value={password}
                 onKeyDown={handleKeyDown}
               />
             </div>
