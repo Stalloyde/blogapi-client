@@ -62,7 +62,7 @@ function Login() {
                 id='username'
                 name='username'
                 placeholder='Username'
-                // required
+                required
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
@@ -82,7 +82,7 @@ function Login() {
                 id='password'
                 name='password'
                 placeholder='Password'
-                // required
+                required
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
