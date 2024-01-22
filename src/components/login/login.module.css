@@ -21,7 +21,7 @@
     justify-content: center;
     height: 550px;
     width: 500px;
-    gap: 1em;
+    gap: 2em;
     background-color: white;
     border:1px solid gray;
     box-shadow: -3px 3px black;
@@ -29,6 +29,7 @@
 }
 
 .form > div {
+    position: relative;
     display: grid;
     grid-template-columns: 2fr 8fr;
     align-items: center;
@@ -38,21 +39,29 @@
 
 .form > div:last-child {
     grid-template-columns: 1fr;
-    width:80%;
+    width: 80%;
 }
+
 
 .form > div > img {
     margin: auto auto;
+    height: 50px;
+    width: 50px;
 }
 
 .form > div > input {
     padding: 10px;
     width: 300px;
-        height: 40px;
+    height: 40px;
 }
 
 .form > div > button {
     padding: 10px;
 }
 
-
+.errorMessage {
+    position: absolute;
+    color: red;
+    top: -0.5em;
+    left: 6em;
+}
