@@ -2,11 +2,11 @@ import { useState } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 
-function layout(props) {
+function layout({ children, token }) {
   return (
     <>
-      <Header />
-      <main>{props.children}</main>
+      <Header token={token} />
+      <main>{children}</main>
       <Footer />
     </>
   );

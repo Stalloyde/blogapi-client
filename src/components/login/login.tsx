@@ -1,13 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Layout from '../layout/layout';
 import styles from './login.module.css';
 import usernameIcon from '../../assets/icons8-username-64.png';
 import passwordIcon from '../../assets/icons8-password-50.png';
 
-function Login() {
+function Login({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleToken = (BearerToken) => {
+    const oneMinute = new Date(new Date().getTime() + 1 * 60 * 1000);
+    Cookies.set('token', BearerToken, {
+      expires: oneMinute,
+      secure: true,
+    });
+    setToken(Cookies.get('token'));
+  };
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 32) {
@@ -33,10 +45,11 @@ function Login() {
       if (!responseData.user && !responseData.Bearer) {
         setErrorMessage(responseData);
       } else {
-        console.log(responseData);
         setUsername('');
         setPassword('');
         setErrorMessage('');
+        handleToken(responseData.Bearer);
+        navigate(-1);
       }
     } catch (err) {
       console.log(err.message);
@@ -95,7 +108,7 @@ function Login() {
             </div>
 
             <div>
-              <button value='Log In'> Log In</button>
+              <button value='Log In'>Log In</button>
             </div>
           </form>
         </div>

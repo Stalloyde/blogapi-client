@@ -5,7 +5,7 @@ import Layout from '../layout/layout';
 import styles from './home.module.css';
 import formatDate from '../../formatDate';
 
-function Home() {
+function Home({ token }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,7 +36,7 @@ function Home() {
   }, []);
 
   return (
-    <Layout>
+    <Layout token={token}>
       {loading && <div className='loading'>Loading...</div>}
       {error && !loading && <div className='error'>{error}</div>}
 
