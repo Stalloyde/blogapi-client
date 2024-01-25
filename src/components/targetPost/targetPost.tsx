@@ -6,43 +6,40 @@ import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
 import '../../index.css';
 
-function TargetPost({ token, setToken }) {
+function TargetPost({ token }) {
   const [targetPostData, setTargetPostData] = useState();
   const [newComment, setNewComment] = useState();
+  const [rerender, setRerender] = useState(false);
   const targetPostId = useParams();
+  const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setRerender(false);
     try {
-      const response = await fetch('http://localhost:3000/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
+      const response = await fetch(
+        `http://localhost:3000/posts/${targetPostId.id}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify({
+            newComment,
+          }),
         },
-        body: JSON.stringify({
-          username,
-          password,
-          confirmPassword,
-        }),
-      });
+      );
 
       const responseData = await response.json();
-      if (
-        responseData.usernameError ||
-        responseData.passwordError ||
-        responseData.confirmPasswordError
-      ) {
-        setErrorMessage(responseData);
+      if (responseData.errors) {
+        setErrorMessage(responseData.errors[0].msg);
       } else {
-        setUsername('');
-        setPassword('');
-        setConfirmPassword('');
+        setNewComment('');
         setErrorMessage('');
-        setToken(token);
-        setSignupSuccess(true);
+        setRerender(true);
       }
     } catch (err) {
       console.log(err.message);
@@ -77,7 +74,7 @@ function TargetPost({ token, setToken }) {
       }
     };
     fetchTargetPost();
-  }, []);
+  }, [rerender]);
 
   return (
     <Layout token={token}>
@@ -116,6 +113,9 @@ function TargetPost({ token, setToken }) {
             ) : (
               <form onSubmit={handleSubmit} className={styles.form}>
                 <label htmlFor='newComment'>Add Comment:</label>
+                {errorMessage && (
+                  <p className={styles.errorMessage}>*Input required</p>
+                )}
                 <textarea
                   value={newComment}
                   id='newComment'
@@ -124,7 +124,6 @@ function TargetPost({ token, setToken }) {
                   required
                   onChange={(e) => {
                     setNewComment(e.target.value);
-                    console.log(newComment);
                   }}
                 />
                 <button value='Post'>Post</button>
