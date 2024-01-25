@@ -1,8 +1,6 @@
 .cardContainer {
-    margin: 0em 5em;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(2,1fr);
+    grid-template-columns: repeat(auto-fill, minmax(450px,500px));
 }
 
 .card {
@@ -10,8 +8,8 @@
     border: 1px solid gray;
     padding: 1em;
     margin: 2em;
-    height: 300px;
-    width: 420px;
+    min-height: 300px;
+    min-width: 300px;
     border-radius: 10px;
     box-shadow: -3px 3px black;
 }
@@ -25,11 +23,10 @@
     box-shadow: 3px 3px black;
 }
 
-
 .content {
     height: 60%;
     margin: 1em 0.5em;
-    padding: 1em 0.5em;
+    padding: 1em;
     line-height: 1.5;
     border: 1mm ridge aliceblue;
     border-radius: 10px;

@@ -10,8 +10,7 @@
 .content {
     background-image:url('../../assets/il-vagabiondo-Jy7wD-TiJ2A-unsplash.jpg');
     display: flex;
-    margin: 4em 7em;
-    border-radius: 10px 0px 0px;
+    margin: 5em 0;
 }
 
 .form {
@@ -19,13 +18,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 550px;
+    height: 450px;
     width: 500px;
     gap: 2em;
     background-color: white;
     border:1px solid gray;
     box-shadow: -3px 3px black;
-    border-radius: 10px 0px 0px;
 }
 
 .form > div {

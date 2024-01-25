@@ -1,4 +1,4 @@
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +20,6 @@ h1 {
 .navbtn {
   display: flex;
   padding: 10px;
-  margin: 0 10px;
   width: 80px;
   flex-direction: column;
   align-items: center;

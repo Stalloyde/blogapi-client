@@ -5,11 +5,20 @@
   box-sizing: border-box;
 }
 
+body{ 
+  background-color: burlywood;
+}
+
 #root {
-  display: grid;
-  height: 100vh;
-  grid-template-rows: 80px 1fr 70px;
   background-color: aliceblue;
+}
+
+main {
+  height: 82vh;
+}
+
+footer, header {
+  height:70px; 
 }
 
 a {
