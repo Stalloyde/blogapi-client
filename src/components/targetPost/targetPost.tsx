@@ -6,7 +6,7 @@ import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
 import '../../index.css';
 
-function TargetPost({ token }) {
+function TargetPost({ token, setSignUpUrl }) {
   const [targetPostData, setTargetPostData] = useState();
   const [newComment, setNewComment] = useState();
   const [rerender, setRerender] = useState(false);
@@ -65,6 +65,7 @@ function TargetPost({ token }) {
         }
 
         const responseData = await response.json();
+        setSignUpUrl();
         setTargetPostData(responseData);
         setError(null);
       } catch (err) {

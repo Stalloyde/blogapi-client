@@ -6,14 +6,15 @@ import styles from './login.module.css';
 import usernameIcon from '../../assets/icons8-username-64.png';
 import passwordIcon from '../../assets/icons8-password-50.png';
 
-function Login({ setToken }) {
+function Login({ setToken, signUpUrl }) {
+  console.log(signUpUrl);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleToken = (BearerToken) => {
-    const oneMinute = new Date(new Date().getTime() + 1 * 60 * 1000);
+    const oneMinute = new Date(new Date().getTime() + 10 * 60 * 1000);
     Cookies.set('token', BearerToken, {
       expires: oneMinute,
       secure: true,
@@ -49,7 +50,7 @@ function Login({ setToken }) {
         setPassword('');
         setErrorMessage('');
         handleToken(responseData.Bearer);
-        navigate(-1);
+        signUpUrl ? navigate('/posts') : navigate(-1);
       }
     } catch (err) {
       console.log(err.message);

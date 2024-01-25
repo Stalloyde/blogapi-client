@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Layout from '../layout/layout';
 import styles from './signup.module.css';
 import Modal from './modal';
 import usernameIcon from '../../assets/icons8-username-64.png';
 import passwordIcon from '../../assets/icons8-password-50.png';
 
-function Signup() {
+function Signup({ setSignUpUrl }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -20,6 +21,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await fetch('http://localhost:3000/signup', {
         method: 'POST',
@@ -41,7 +43,7 @@ function Signup() {
       ) {
         setErrorMessage(responseData);
       } else {
-        console.log(responseData);
+        console.log(params);
         setUsername('');
         setPassword('');
         setConfirmPassword('');
@@ -52,6 +54,10 @@ function Signup() {
       console.log(err.message);
     }
   };
+
+  useEffect(() => {
+    setSignUpUrl(useLocation().pathname);
+  }, []);
 
   return (
     <Layout>

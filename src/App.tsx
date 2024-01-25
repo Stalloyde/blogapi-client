@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
@@ -15,6 +15,7 @@ import Cookies from 'js-cookie';
 const App = () => {
   const jwtToken = Cookies.get('token');
   const [token, setToken] = useState(jwtToken);
+  const [signUpUrl, setSignUpUrl] = useState();
 
   const router = createBrowserRouter([
     {
@@ -23,19 +24,25 @@ const App = () => {
     },
     {
       path: '/posts',
-      element: <Home token={token} />,
+      element: <Home token={token} setSignUpUrl={setSignUpUrl} />,
     },
     {
       path: '/posts/:id',
-      element: <TargetPost token={token} setToken={setToken} />,
+      element: (
+        <TargetPost
+          token={token}
+          setToken={setToken}
+          setSignUpUrl={setSignUpUrl}
+        />
+      ),
     },
     {
       path: '/login',
-      element: <Login setToken={setToken} />,
+      element: <Login setToken={setToken} signUpUrl={signUpUrl} />,
     },
     {
       path: '/signup',
-      element: <Signup />,
+      element: <Signup signUpUrl={signUpUrl} setSignUpUrl={setSignUpUrl} />,
     },
   ]);
 

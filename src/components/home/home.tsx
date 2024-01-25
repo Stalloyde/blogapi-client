@@ -5,7 +5,7 @@ import Layout from '../layout/layout';
 import styles from './home.module.css';
 import formatDate from '../../formatDate';
 
-function Home({ token }) {
+function Home({ token, setSignUpUrl }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,6 +25,7 @@ function Home({ token }) {
 
         const responseData = await response.json();
         setPosts(responseData);
+        setSignUpUrl();
         setError(null);
       } catch (err) {
         setError(err.message);
