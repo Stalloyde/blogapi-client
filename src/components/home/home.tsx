@@ -57,7 +57,7 @@ function Home({ token }) {
 
                   <LinesEllipsis
                     text={post.content}
-                    maxLine='5'
+                    maxLine='4'
                     ellipsis='..'
                     trimRight
                     basedOn='letters'
