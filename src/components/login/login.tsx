@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Layout from '../layout/layout';
@@ -6,13 +6,26 @@ import styles from './login.module.css';
 import usernameIcon from '../../assets/icons8-username-64.png';
 import passwordIcon from '../../assets/icons8-password-50.png';
 
-function Login({ setToken, signUpUrl }) {
+type PropsType = {
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+  signUpUrl: string;
+};
+
+type ErrorMessageType = {
+  usernameError: string | null;
+  passwordError: string | null;
+};
+
+function Login({ setToken, signUpUrl }: PropsType) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<ErrorMessageType | null>(
+    null,
+  );
   const navigate = useNavigate();
 
-  const handleToken = (BearerToken) => {
+  const handleToken = (BearerToken: string) => {
     const oneMinute = new Date(new Date().getTime() + 10 * 60 * 1000);
     Cookies.set('token', BearerToken, {
       expires: oneMinute,
@@ -21,13 +34,13 @@ function Login({ setToken, signUpUrl }) {
     setToken(Cookies.get('token'));
   };
 
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 32) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === ' ') {
       e.preventDefault();
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await fetch('http://localhost:3000/login', {
@@ -47,11 +60,11 @@ function Login({ setToken, signUpUrl }) {
       } else {
         setUsername('');
         setPassword('');
-        setErrorMessage('');
+        setErrorMessage(null);
         handleToken(responseData.Bearer);
         signUpUrl ? navigate('/posts') : navigate(-1);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.message);
     }
   };
@@ -66,7 +79,7 @@ function Login({ setToken, signUpUrl }) {
         <div className={styles.content}>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div>
-              {errorMessage.usernameError && (
+              {errorMessage && errorMessage.usernameError && (
                 <p className={styles.errorMessage}>
                   {errorMessage.usernameError}
                 </p>
@@ -87,7 +100,7 @@ function Login({ setToken, signUpUrl }) {
             </div>
 
             <div>
-              {errorMessage.passwordError && (
+              {errorMessage && errorMessage.passwordError && (
                 <p className={styles.errorMessage}>
                   {errorMessage.passwordError}
                 </p>

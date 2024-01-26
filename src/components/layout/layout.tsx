@@ -2,7 +2,13 @@ import { useState } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 
-function layout({ children, token, setToken }) {
+type PropsType = {
+  children: any;
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function layout({ children, token, setToken }: PropsType) {
   return (
     <>
       <Header token={token} setToken={setToken} />

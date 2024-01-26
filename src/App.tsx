@@ -13,9 +13,9 @@ import './index.css';
 import Cookies from 'js-cookie';
 
 const App = () => {
-  const jwtToken = Cookies.get('token');
+  const jwtToken: string = Cookies.get('token');
   const [token, setToken] = useState(jwtToken);
-  const [signUpUrl, setSignUpUrl] = useState();
+  const [signUpUrl, setSignUpUrl] = useState('');
 
   const router = createBrowserRouter([
     {

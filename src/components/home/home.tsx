@@ -5,8 +5,34 @@ import Layout from '../layout/layout';
 import styles from './home.module.css';
 import formatDate from '../../formatDate';
 
-function Home({ token, setToken, setSignUpUrl }) {
-  const [posts, setPosts] = useState([]);
+type PropsType = {
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+  setSignUpUrl: React.Dispatch<React.SetStateAction<string>>;
+};
+
+type PostsType = {
+  image: {
+    fieldname: String;
+    originalname: String;
+    encoding: String;
+    mimetype: String;
+    destination: String;
+    filename: String;
+    path: String;
+    size: Number;
+  };
+
+  author: String;
+  title: String;
+  content: String;
+  date: Date;
+  isPublished: Boolean;
+  comments: [];
+}[];
+
+function Home({ token, setToken, setSignUpUrl }: PropsType) {
+  const [posts, setPosts] = useState<PostsType>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,9 +51,9 @@ function Home({ token, setToken, setSignUpUrl }) {
 
         const responseData = await response.json();
         setPosts(responseData);
-        setSignUpUrl();
+        setSignUpUrl('');
         setError(null);
-      } catch (err) {
+      } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);

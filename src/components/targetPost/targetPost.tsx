@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Layout from '../layout/layout';
@@ -6,16 +6,55 @@ import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
 import '../../index.css';
 
-function TargetPost({ token, setToken, setSignUpUrl }) {
-  const [targetPostData, setTargetPostData] = useState();
-  const [newComment, setNewComment] = useState();
+type PropsType = {
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+  setSignUpUrl: React.Dispatch<React.SetStateAction<string>>;
+};
+
+type TargetPostsType = {
+  image: {
+    fieldname: String;
+    originalname: String;
+    encoding: String;
+    mimetype: String;
+    destination: String;
+    filename: String;
+    path: String;
+    size: Number;
+  };
+
+  author: String;
+  title: String;
+  content: String;
+  date: Date;
+  isPublished: Boolean;
+  comments: [];
+};
+
+type CommentType = {
+  _id: string;
+  author: {
+    id: String;
+    username: String;
+    isMod: Boolean;
+  };
+  content: String;
+  date: Date;
+};
+
+function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
+  const [targetPostData, setTargetPostData] = useState<
+    TargetPostsType | undefined
+  >();
+  const [newComment, setNewComment] = useState('');
   const [rerender, setRerender] = useState(false);
   const targetPostId = useParams();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setRerender(false);
     try {
@@ -41,7 +80,7 @@ function TargetPost({ token, setToken, setSignUpUrl }) {
         setErrorMessage('');
         setRerender(true);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.message);
     }
   };
@@ -65,10 +104,10 @@ function TargetPost({ token, setToken, setSignUpUrl }) {
         }
 
         const responseData = await response.json();
-        setSignUpUrl();
+        setSignUpUrl('');
         setTargetPostData(responseData);
         setError(null);
-      } catch (err) {
+      } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
@@ -82,7 +121,7 @@ function TargetPost({ token, setToken, setSignUpUrl }) {
       {loading && <div className='loading'>Loading...</div>}
       {error && !loading && <div className='error'>{error}</div>}
 
-      {!error && !loading && (
+      {!error && !loading && targetPostData !== undefined && (
         <>
           <div className={styles.contentContainer}>
             <h2>{targetPostData.title}</h2>
@@ -132,7 +171,7 @@ function TargetPost({ token, setToken, setSignUpUrl }) {
             )}
             {targetPostData.comments.length > 0 ? (
               <>
-                {targetPostData.comments.map((comment) => (
+                {targetPostData.comments.map((comment: CommentType) => (
                   <div key={comment._id} className={styles.comment}>
                     <div>{comment.content}</div>
                     <em>

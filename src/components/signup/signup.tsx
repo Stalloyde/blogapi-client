@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent } from 'react';
 import { useLocation } from 'react-router-dom';
 import Layout from '../layout/layout';
 import styles from './signup.module.css';
@@ -6,21 +6,33 @@ import Modal from './modal';
 import usernameIcon from '../../assets/icons8-username-64.png';
 import passwordIcon from '../../assets/icons8-password-50.png';
 
-function Signup({ setSignUpUrl }) {
+type PropsType = {
+  setSignUpUrl: React.Dispatch<React.SetStateAction<string>>;
+};
+
+type ErrorMessageType = {
+  usernameError: string | null;
+  passwordError: string | null;
+  confirmPasswordError: string | null;
+};
+
+function Signup({ setSignUpUrl }: PropsType) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<ErrorMessageType | null>(
+    null,
+  );
   const [signupSuccess, setSignupSuccess] = useState(false);
-  const urlPath = useLocation().pathname;
+  const urlPath: string = useLocation().pathname;
 
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 32) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === ' ') {
       e.preventDefault();
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -47,10 +59,10 @@ function Signup({ setSignUpUrl }) {
         setUsername('');
         setPassword('');
         setConfirmPassword('');
-        setErrorMessage('');
+        setErrorMessage(null);
         setSignupSuccess(true);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.log(err.message);
     }
   };
@@ -73,7 +85,7 @@ function Signup({ setSignUpUrl }) {
             ) : (
               <>
                 <div>
-                  {errorMessage.usernameError && (
+                  {errorMessage && errorMessage.usernameError && (
                     <p className={styles.errorMessage}>
                       {errorMessage.usernameError}
                     </p>
@@ -94,7 +106,7 @@ function Signup({ setSignUpUrl }) {
                 </div>
 
                 <div>
-                  {errorMessage.passwordError && (
+                  {errorMessage && errorMessage.passwordError && (
                     <p className={styles.errorMessage}>
                       {errorMessage.passwordError}
                     </p>
@@ -115,7 +127,7 @@ function Signup({ setSignUpUrl }) {
                 </div>
 
                 <div>
-                  {errorMessage.confirmPasswordError && (
+                  {errorMessage && errorMessage.confirmPasswordError && (
                     <p className={styles.errorMessage}>
                       {errorMessage.confirmPasswordError}
                     </p>

@@ -7,7 +7,12 @@ import loginLogo from '../../assets/icons8-login-50.png';
 import logoutLogo from '../../assets/icons8-logout-50.png';
 import signupLogo from '../../assets/icons8-sign-up-50.png';
 
-function Header({ token, setToken }) {
+type PropsType = {
+  token: string;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function Header({ token, setToken }: PropsType) {
   const handleClick = () => {
     setToken('');
     Cookies.remove('token');
