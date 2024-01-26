@@ -7,7 +7,6 @@ import usernameIcon from '../../assets/icons8-username-64.png';
 import passwordIcon from '../../assets/icons8-password-50.png';
 
 function Login({ setToken, signUpUrl }) {
-  console.log(signUpUrl);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
