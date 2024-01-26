@@ -5,7 +5,7 @@ import Layout from '../layout/layout';
 import styles from './home.module.css';
 import formatDate from '../../formatDate';
 
-function Home() {
+function Home({ token, setToken, setSignUpUrl }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,6 +25,7 @@ function Home() {
 
         const responseData = await response.json();
         setPosts(responseData);
+        setSignUpUrl();
         setError(null);
       } catch (err) {
         setError(err.message);
@@ -36,7 +37,7 @@ function Home() {
   }, []);
 
   return (
-    <Layout>
+    <Layout token={token} setToken={setToken}>
       {loading && <div className='loading'>Loading...</div>}
       {error && !loading && <div className='error'>{error}</div>}
 
@@ -57,7 +58,7 @@ function Home() {
 
                   <LinesEllipsis
                     text={post.content}
-                    maxLine='5'
+                    maxLine='4'
                     ellipsis='..'
                     trimRight
                     basedOn='letters'

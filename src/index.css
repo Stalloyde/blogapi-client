@@ -6,10 +6,18 @@
 }
 
 #root {
-  display: grid;
-  height: 100vh;
-  grid-template-rows: 80px 1fr 70px;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   background-color: aliceblue;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer, header {
+  height:70px; 
 }
 
 a {

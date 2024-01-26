@@ -10,9 +10,12 @@ import Login from './components/login/login';
 import Signup from './components/signup/signup';
 import TargetPost from './components/targetPost/targetPost';
 import './index.css';
+import Cookies from 'js-cookie';
 
 const App = () => {
-  const [targetPost, setTargetPost] = useState([]);
+  const jwtToken = Cookies.get('token');
+  const [token, setToken] = useState(jwtToken);
+  const [signUpUrl, setSignUpUrl] = useState();
 
   const router = createBrowserRouter([
     {
@@ -21,19 +24,27 @@ const App = () => {
     },
     {
       path: '/posts',
-      element: <Home />,
+      element: (
+        <Home token={token} setToken={setToken} setSignUpUrl={setSignUpUrl} />
+      ),
     },
     {
       path: '/posts/:id',
-      element: <TargetPost />,
+      element: (
+        <TargetPost
+          token={token}
+          setToken={setToken}
+          setSignUpUrl={setSignUpUrl}
+        />
+      ),
     },
     {
       path: '/login',
-      element: <Login />,
+      element: <Login setToken={setToken} signUpUrl={signUpUrl} />,
     },
     {
       path: '/signup',
-      element: <Signup />,
+      element: <Signup signUpUrl={signUpUrl} setSignUpUrl={setSignUpUrl} />,
     },
   ]);
 

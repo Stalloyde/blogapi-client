@@ -1,21 +1,61 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Layout from '../layout/layout';
 import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
 import '../../index.css';
 
-function TargetPost() {
+function TargetPost({ token, setToken, setSignUpUrl }) {
   const [targetPostData, setTargetPostData] = useState();
+  const [newComment, setNewComment] = useState();
+  const [rerender, setRerender] = useState(false);
   const targetPostId = useParams();
+  const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setRerender(false);
+    try {
+      const response = await fetch(
+        `http://localhost:3000/posts/${targetPostId.id}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify({
+            newComment,
+          }),
+        },
+      );
+
+      const responseData = await response.json();
+      if (responseData.errors) {
+        setErrorMessage(responseData.errors[0].msg);
+      } else {
+        setNewComment('');
+        setErrorMessage('');
+        setRerender(true);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   useEffect(() => {
     const fetchTargetPost = async () => {
       try {
         const response = await fetch(
           `http://localhost:3000/posts/${targetPostId.id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          },
         );
 
         if (!response.ok) {
@@ -25,6 +65,7 @@ function TargetPost() {
         }
 
         const responseData = await response.json();
+        setSignUpUrl();
         setTargetPostData(responseData);
         setError(null);
       } catch (err) {
@@ -34,10 +75,10 @@ function TargetPost() {
       }
     };
     fetchTargetPost();
-  }, []);
+  }, [rerender]);
 
   return (
-    <Layout>
+    <Layout token={token} setToken={setToken}>
       {loading && <div className='loading'>Loading...</div>}
       {error && !loading && <div className='error'>{error}</div>}
 
@@ -58,17 +99,37 @@ function TargetPost() {
 
           <div className={styles.commentsContainer}>
             <h3>Comments</h3>
-            <div>
-              Please{' '}
-              <Link to='/signup'>
-                <em className={styles.commentLink}>sign up</em>
-              </Link>{' '}
-              or
-              <Link to='/login'>
-                <em className={styles.commentLink}>login</em>
-              </Link>{' '}
-              to add a comment
-            </div>
+            {!token ? (
+              <div>
+                Please{' '}
+                <Link to='/signup'>
+                  <em className={styles.commentLink}>sign up</em>
+                </Link>{' '}
+                or
+                <Link to='/login'>
+                  <em className={styles.commentLink}>login</em>
+                </Link>{' '}
+                to add a comment
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <label htmlFor='newComment'>Add Comment:</label>
+                {errorMessage && (
+                  <p className={styles.errorMessage}>*Input required</p>
+                )}
+                <textarea
+                  value={newComment}
+                  id='newComment'
+                  name='newComment'
+                  placeholder='Write a comment...'
+                  required
+                  onChange={(e) => {
+                    setNewComment(e.target.value);
+                  }}
+                />
+                <button value='Post'>Post</button>
+              </form>
+            )}
             {targetPostData.comments.length > 0 ? (
               <>
                 {targetPostData.comments.map((comment) => (
