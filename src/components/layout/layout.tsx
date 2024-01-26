@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 
-function layout({ children, token }) {
+function layout({ children, token, setToken }) {
   return (
     <>
-      <Header token={token} />
+      <Header token={token} setToken={setToken} />
       <main>{children}</main>
       <Footer />
     </>

@@ -12,6 +12,7 @@ function Signup({ setSignUpUrl }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [signupSuccess, setSignupSuccess] = useState(false);
+  const urlPath = useLocation().pathname;
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 32) {
@@ -43,7 +44,6 @@ function Signup({ setSignUpUrl }) {
       ) {
         setErrorMessage(responseData);
       } else {
-        console.log(params);
         setUsername('');
         setPassword('');
         setConfirmPassword('');
@@ -56,7 +56,7 @@ function Signup({ setSignUpUrl }) {
   };
 
   useEffect(() => {
-    setSignUpUrl(useLocation().pathname);
+    setSignUpUrl(urlPath);
   }, []);
 
   return (

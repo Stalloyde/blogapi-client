@@ -6,7 +6,7 @@ import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
 import '../../index.css';
 
-function TargetPost({ token, setSignUpUrl }) {
+function TargetPost({ token, setToken, setSignUpUrl }) {
   const [targetPostData, setTargetPostData] = useState();
   const [newComment, setNewComment] = useState();
   const [rerender, setRerender] = useState(false);
@@ -78,7 +78,7 @@ function TargetPost({ token, setSignUpUrl }) {
   }, [rerender]);
 
   return (
-    <Layout token={token}>
+    <Layout token={token} setToken={setToken}>
       {loading && <div className='loading'>Loading...</div>}
       {error && !loading && <div className='error'>{error}</div>}
 

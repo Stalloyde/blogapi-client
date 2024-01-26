@@ -7,7 +7,12 @@ import loginLogo from '../../assets/icons8-login-50.png';
 import logoutLogo from '../../assets/icons8-logout-50.png';
 import signupLogo from '../../assets/icons8-sign-up-50.png';
 
-function Header({ token }) {
+function Header({ token, setToken }) {
+  const handleClick = () => {
+    setToken('');
+    Cookies.remove('token');
+  };
+
   return (
     <header className={styles.header}>
       <Link to='/' className={styles.navbtn}>
@@ -28,10 +33,10 @@ function Header({ token }) {
             </Link>
           </>
         ) : (
-          <Link to='/logout' className={styles.navbtn}>
+          <div className={styles.navbtn} onClick={handleClick}>
             <img src={logoutLogo} alt='logout-logo'></img>
-            Log Out
-          </Link>
+            Log out
+          </div>
         )}
       </div>
     </header>

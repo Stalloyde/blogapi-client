@@ -24,7 +24,9 @@ const App = () => {
     },
     {
       path: '/posts',
-      element: <Home token={token} setSignUpUrl={setSignUpUrl} />,
+      element: (
+        <Home token={token} setToken={setToken} setSignUpUrl={setSignUpUrl} />
+      ),
     },
     {
       path: '/posts/:id',
