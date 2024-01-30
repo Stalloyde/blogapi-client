@@ -48,7 +48,6 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
     TargetPostsType | undefined
   >();
   const [newComment, setNewComment] = useState('');
-  const [rerender, setRerender] = useState(false);
   const targetPostId = useParams();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
@@ -56,7 +55,6 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setRerender(false);
     try {
       const response = await fetch(
         `http://localhost:3000/posts/${targetPostId.id}`,
@@ -78,7 +76,6 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
       } else {
         setNewComment('');
         setErrorMessage('');
-        setRerender(true);
       }
     } catch (err: any) {
       console.log(err.message);
@@ -114,7 +111,7 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
       }
     };
     fetchTargetPost();
-  }, [rerender]);
+  }, [token]);
 
   return (
     <Layout token={token} setToken={setToken}>
