@@ -1,9 +1,10 @@
 .cardContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(450px,500px));
+    grid-template-columns: repeat(auto-fill, minmax(400px,450px));
 }
 
 .card {
+    position: relative;
     background-color: white;
     border: 1px solid gray;
     padding: 1em;
@@ -12,6 +13,12 @@
     min-width: 300px;
     border-radius: 10px;
     box-shadow: -3px 3px black;
+}   
+
+.card > a > div:first-child {
+    width: 70%;
+    height: 50px;
+    word-wrap: break-word;
 }
 
 .mainHeader {
@@ -24,7 +31,7 @@
 }
 
 .content {
-    height: 60%;
+    height: 55%;
     margin: 1em 0.5em;
     padding: 1em;
     line-height: 1.5;
