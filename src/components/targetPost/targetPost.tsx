@@ -48,13 +48,16 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
     TargetPostsType | undefined
   >();
   const [newComment, setNewComment] = useState('');
+  const [rerender, setRerender] = useState(false);
   const targetPostId = useParams();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitting(true);
     try {
       const response = await fetch(
         `http://localhost:3000/posts/${targetPostId.id}`,
@@ -75,7 +78,9 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
         setErrorMessage(responseData.errors[0].msg);
       } else {
         setNewComment('');
+        setRerender(true);
         setErrorMessage('');
+        setSubmitting(false);
       }
     } catch (err: any) {
       console.log(err.message);
@@ -103,6 +108,7 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
         const responseData = await response.json();
         setSignUpUrl('');
         setTargetPostData(responseData);
+        setRerender(false);
         setError(null);
       } catch (err: any) {
         setError(err.message);
@@ -111,7 +117,7 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
       }
     };
     fetchTargetPost();
-  }, [token]);
+  }, [token, rerender]);
 
   return (
     <Layout token={token} setToken={setToken}>
@@ -163,7 +169,13 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
                     setNewComment(e.target.value);
                   }}
                 />
-                <button value='Post'>Post</button>
+                {submitting ? (
+                  <button value='Post' disabled>
+                    Posting..
+                  </button>
+                ) : (
+                  <button value='Post'>Post</button>
+                )}
               </form>
             )}
             {targetPostData.comments.length > 0 ? (
