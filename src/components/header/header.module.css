@@ -33,3 +33,10 @@ a > img, .navbtn > img {
 .navbtn:hover {
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  h1 {
+    font-size: large;
+  }
+  
+  }

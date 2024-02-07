@@ -132,6 +132,7 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
               Written by: {targetPostData.author.username} | Date:{' '}
               {formatDate(targetPostData.date)}
             </em>
+            {targetPostData.image && <img src={targetPostData.image.url}></img>}
             <div className={styles.postContainer}>
               <div>{targetPostData.content}</div>
             </div>
