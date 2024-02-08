@@ -14,19 +14,20 @@ type PropsType = {
 
 type TargetPostsType = {
   image: {
-    fieldname: String;
-    originalname: String;
-    encoding: String;
-    mimetype: String;
-    destination: String;
-    filename: String;
-    path: String;
+    fieldname: string;
+    originalname: string;
+    encoding: string;
+    mimetype: string;
+    destination: string;
+    filename: string;
+    path: string;
     size: Number;
+    url: string;
   };
 
-  author: String;
-  title: String;
-  content: String;
+  author: { username: string };
+  title: string;
+  content: string;
   date: Date;
   isPublished: Boolean;
   comments: [];
@@ -35,11 +36,11 @@ type TargetPostsType = {
 type CommentType = {
   _id: string;
   author: {
-    id: String;
-    username: String;
+    id: string;
+    username: string;
     isMod: Boolean;
   };
-  content: String;
+  content: string;
   date: Date;
 };
 
