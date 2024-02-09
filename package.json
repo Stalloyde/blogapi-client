@@ -20,6 +20,7 @@
     "typescript-plugin-css-modules": "^5.0.2"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.1",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
