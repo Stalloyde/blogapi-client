@@ -1,6 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import Layout from '../layout/layout';
 import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
