@@ -42,7 +42,7 @@ function Login({ setToken, signUpUrl }: PropsType) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://blog-api-stalloyde.fly.dev/login', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
