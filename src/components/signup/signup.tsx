@@ -36,20 +36,17 @@ function Signup({ setSignUpUrl }: PropsType) {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        'https://blog-api-stalloyde.fly.dev/signup',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username,
-            password,
-            confirmPassword,
-          }),
+      const response = await fetch('https://blog-api-stalloyde/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+        body: JSON.stringify({
+          username,
+          password,
+          confirmPassword,
+        }),
+      });
 
       const responseData = await response.json();
       if (
