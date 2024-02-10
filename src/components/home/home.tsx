@@ -41,7 +41,7 @@ function Home({ token, setToken, setSignUpUrl }: PropsType) {
     const getPosts = async () => {
       try {
         const response = await fetch(
-          'http://blog-api-stalloyde.fly.dev/posts',
+          'https://blog-api-stalloyde.fly.dev/posts',
           {
             mode: 'cors',
           },
