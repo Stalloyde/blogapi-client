@@ -98,13 +98,15 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
   useEffect(() => {
     const fetchTargetPost = async () => {
       try {
+        const headers: HeadersType = {
+          'Content-Type': 'application/json',
+        };
+
+        if (token) headers.Authorization = token;
+
         const response = await fetch(
           `http://localhost:3000/posts/${targetPostId.id}`,
-          {
-            headers: {
-              Authorization: token,
-            },
-          },
+          { headers },
         );
 
         if (!response.ok) {

@@ -14,19 +14,19 @@ type PropsType = {
 type PostsType = {
   _id: string;
   image: {
-    fieldname: String;
-    originalname: String;
-    encoding: String;
-    mimetype: String;
-    destination: String;
-    filename: String;
-    path: String;
+    fieldname: string;
+    originalname: string;
+    encoding: string;
+    mimetype: string;
+    destination: string;
+    filename: string;
+    path: string;
     size: Number;
   };
 
-  author: String;
-  title: String;
-  content: String;
+  author: string;
+  title: string;
+  content: string;
   date: Date;
   isPublished: Boolean;
   comments: [];

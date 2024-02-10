@@ -58,6 +58,7 @@ function Login({ setToken, signUpUrl }: PropsType) {
         setErrorMessage(responseData);
       } else {
         setUsername('');
+        ``;
         setPassword('');
         setErrorMessage(null);
         handleToken(responseData.Bearer);
