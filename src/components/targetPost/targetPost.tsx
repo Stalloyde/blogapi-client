@@ -71,7 +71,7 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
       if (token) headers.Authorization = token;
 
       const response = await fetch(
-        `http://localhost:3000/posts/${targetPostId.id}`,
+        `http://blog-api-stalloyde.fly.dev/${targetPostId.id}`,
         {
           method: 'POST',
           headers,
@@ -105,7 +105,7 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
         if (token) headers.Authorization = token;
 
         const response = await fetch(
-          `http://localhost:3000/posts/${targetPostId.id}`,
+          `http://blog-api-stalloyde.fly.dev/${targetPostId.id}`,
           { headers },
         );
 
