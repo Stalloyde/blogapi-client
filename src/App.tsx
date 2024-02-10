@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,7 +13,7 @@ import './index.css';
 import Cookies from 'js-cookie';
 
 const App = () => {
-  const jwtToken: string = Cookies.get('token');
+  const jwtToken: string | undefined = Cookies.get('token');
   const [token, setToken] = useState(jwtToken);
   const [signUpUrl, setSignUpUrl] = useState('');
 
@@ -44,7 +44,7 @@ const App = () => {
     },
     {
       path: '/signup',
-      element: <Signup signUpUrl={signUpUrl} setSignUpUrl={setSignUpUrl} />,
+      element: <Signup setSignUpUrl={setSignUpUrl} />,
     },
   ]);
 

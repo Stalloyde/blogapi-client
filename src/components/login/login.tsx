@@ -1,4 +1,4 @@
-import { useEffect, useState, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Layout from '../layout/layout';
@@ -7,9 +7,8 @@ import usernameIcon from '../../assets/icons8-username-64.png';
 import passwordIcon from '../../assets/icons8-password-50.png';
 
 type PropsType = {
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
-  signUpUrl: string;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+  signUpUrl: string | undefined;
 };
 
 type ErrorMessageType = {

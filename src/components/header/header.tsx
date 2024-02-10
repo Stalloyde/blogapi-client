@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import styles from './header.module.css';
@@ -8,8 +7,8 @@ import logoutLogo from '../../assets/icons8-logout-50.png';
 import signupLogo from '../../assets/icons8-sign-up-50.png';
 
 type PropsType = {
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
+  token: string | undefined;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 function Header({ token, setToken }: PropsType) {

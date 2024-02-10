@@ -22,8 +22,10 @@
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.1",
     "@types/js-cookie": "^3.0.6",
+    "@types/luxon": "^3.4.2",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/react-lines-ellipsis": "^0.15.5",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "@vitejs/plugin-react": "^4.2.1",

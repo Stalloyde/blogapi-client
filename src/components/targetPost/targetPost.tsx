@@ -5,9 +5,14 @@ import styles from './targetPost.module.css';
 import formatDate from '../../formatDate';
 import '../../index.css';
 
+type HeadersType = {
+  'Content-Type': string;
+  Authorization?: string; // Authorization header is optional
+};
+
 type PropsType = {
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
+  token: string | undefined;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
   setSignUpUrl: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -59,14 +64,17 @@ function TargetPost({ token, setToken, setSignUpUrl }: PropsType) {
     e.preventDefault();
     setSubmitting(true);
     try {
+      const headers: HeadersType = {
+        'Content-Type': 'application/json',
+      };
+
+      if (token) headers.Authorization = token;
+
       const response = await fetch(
         `http://localhost:3000/posts/${targetPostId.id}`,
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
+          headers,
           body: JSON.stringify({
             newComment,
           }),

@@ -6,12 +6,13 @@ import styles from './home.module.css';
 import formatDate from '../../formatDate';
 
 type PropsType = {
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
+  token: string | undefined;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
   setSignUpUrl: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type PostsType = {
+  _id: string;
   image: {
     fieldname: String;
     originalname: String;

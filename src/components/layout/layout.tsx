@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 
 type PropsType = {
-  children: any;
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
+  children?: any;
+  token?: string | undefined;
+  setToken?: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 function layout({ children, token, setToken }: PropsType) {
