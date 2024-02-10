@@ -8,13 +8,15 @@ import signupLogo from '../../assets/icons8-sign-up-50.png';
 
 type PropsType = {
   token: string | undefined;
-  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setToken?: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 function Header({ token, setToken }: PropsType) {
   const handleClick = () => {
-    setToken('');
-    Cookies.remove('token');
+    if (setToken) {
+      setToken('');
+      Cookies.remove('token');
+    }
   };
 
   return (
