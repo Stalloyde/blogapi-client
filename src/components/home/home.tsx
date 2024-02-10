@@ -40,9 +40,12 @@ function Home({ token, setToken, setSignUpUrl }: PropsType) {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/posts', {
-          mode: 'cors',
-        });
+        const response = await fetch(
+          'https://blog-api-stalloyde.fly.dev/posts',
+          {
+            mode: 'cors',
+          },
+        );
 
         if (!response.ok) {
           throw new Error(
